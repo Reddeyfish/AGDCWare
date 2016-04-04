@@ -12,6 +12,8 @@ public static class AGDCWareFramework {
 
     private const string SCENENAMESTXT = "SceneNames.txt";
 
+    private const float timePerScene = 30f;
+
     /// <summary>
     /// True if the framework has been initialized, False otherwise.
     /// </summary>
@@ -21,6 +23,20 @@ public static class AGDCWareFramework {
     /// Collection of the sceneNames of all mini-games.
     /// </summary>
     private static List<string> sceneNames;
+
+    /// <summary>
+    /// Time when the current scene is supposed to end.
+    /// </summary>
+    private static float endTime;
+
+    /// <summary>
+    /// Returns the amount of time remaining on the timer.
+    /// </summary>
+    /// <returns>Amount of time.</returns>
+    public static float timeRemaining()
+    {
+        return endTime - Time.realtimeSinceStartup;
+    }
 
     private static void init()
     {
@@ -48,5 +64,24 @@ public static class AGDCWareFramework {
         if (!initialized)
             init();
         SceneManager.LoadScene(sceneNames[Random.Range(0, sceneNames.Count)]);
+        resetTimer();
+    }
+
+    private static void resetTimer()
+    {
+        resetTimer(timePerScene);
+    }
+
+    /// <summary>
+    /// Reset the timer to have timeTilEnd seconds left.
+    /// </summary>
+    /// <param name="timeTilEnd">New time remaining on the timer.</param>
+    /// <returns>End time of the timer in terms of real time since startup.</returns>
+    public static float resetTimer(float timeTilEnd)
+    {
+        Assert.IsTrue(timeTilEnd > 0);
+        float pauseStartTime = Time.realtimeSinceStartup;
+        endTime = pauseStartTime + timeTilEnd;
+        return endTime;
     }
 }
