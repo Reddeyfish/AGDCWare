@@ -1,17 +1,20 @@
-# AGDCWare
+﻿# AGDCWare
 Wario-Ware style collection of VGDC minigames
+
+vgdc-uci.com/?p=442661
+
 Guidelines for contribution:
 
-To be added as a contributor, contact our Gitmaster, Gitma Ster. Their email address is gster@uci.edu.
+To be added as a contributor, contact our Gitmaster, Connor Stokes, at VGDC's e-mail: vgdc.uci@gmail.com .
 We prefer to avoid pull requests, as they result in more merge conflicts than direct commits.
 
 
-Your game should be self-contained in a single scene.
+Your game should be self-contained in a single scene. Each game and all of its assets and files should be self-contained in a single folder with the same name as your game.
+
 
 To end your game, call the static funtion `AGDCWareFramework.LoadNextGame();`, which will load the next game.
 For your game to be loaded, add your scene name to the file `SceneNames.txt`, which is above the Assets folder.
 
-All of your assets should be in your own subfolder of Contributor Assets, to avoid conflicts.
 All of your code should be in your own namespace, to avoid conflicts.
 ```
 namespace MyNamespace
@@ -25,11 +28,11 @@ namespace MyNamespace
 
 There exist common library-style in the VGDC Assets folder. If you want to contribute to the VGDC Code library, your library should be
 
-1. functional (it works)
+1. Functional (it works)
 
-2. not unoptimized (it doesn't lag)
+2. Not unoptimized (it doesn't lag)
 
-3. well documented (other people can use it)
+3. Well documented (other people can use it)
 
 
 Documentation should include Assert statements and autodoc (`///`) comments in addition to normal documentation.
