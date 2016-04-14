@@ -73,7 +73,7 @@ Shader "Custom/DerekEdrich/Sound"
 					diff *= diff * diff;
                     finalColor = lerp(	_RegularColor,
 										_HighlightColor,
-										diff) / 2;
+										diff) / 5;
 				}
  
                 half4 c;

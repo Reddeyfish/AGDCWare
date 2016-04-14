@@ -24,7 +24,8 @@ namespace DerekEdrich
 
         void Update()
         {
-            Debug.Log(GetComponent<Rigidbody>().velocity);
+            if (transform.position.y < -10)
+                Destroy(this.gameObject);
         }
     }
 }
