@@ -122,7 +122,17 @@ public static class AGDCWareFramework {
     {
         if (!initialized)
             init();
-        SceneManager.LoadScene(sceneNames[Random.Range(0, sceneNames.Count)]);
+
+        // loads a random scene thats not the current one
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
+        int randAdd = Random.Range(1, sceneCount);
+        int nextSceneIndex = (sceneIndex + randAdd) % sceneCount;
+        SceneManager.LoadScene(nextSceneIndex);
+
+        // cant load another scene if it isnt in build settings
+        //SceneManager.LoadScene(sceneNames[Random.Range(0, sceneNames.Count)]);
+
         resetTimer();
     }
 
