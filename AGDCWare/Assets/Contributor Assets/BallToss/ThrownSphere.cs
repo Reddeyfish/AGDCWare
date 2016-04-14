@@ -9,11 +9,6 @@ namespace DerekEdrich
         [SerializeField]
         protected GameObject soundSpherePrefab;
 
-        void Start()
-        {
-            //GetComponent<Rigidbody>().velocity = 10 * Vector3.one;
-        }
-
         void OnCollisionEnter(Collision col)
         {
             if (col.impulse.sqrMagnitude > 1)
