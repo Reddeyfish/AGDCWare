@@ -30,6 +30,26 @@ public static class AGDCWareFramework {
     private static float endTime;
 
     /// <summary>
+    /// The maximum number of lives. currentLives starts at this number.
+    /// </summary>
+    private static int maxLives;
+
+    /// <summary>
+    /// The current number of lives. If this reaches 0, the game ends.
+    /// </summary>
+    private static int currentLives;
+
+    /// <summary>
+    /// True if max lives and current lives have been set, False otherwise.
+    /// </summary>
+    private static bool livesInit = false;
+
+    /// <summary>
+    /// Number of games won by the player.
+    /// </summary>
+    private static int gamesWon = 0;
+
+    /// <summary>
     /// Returns the amount of time remaining on the timer.
     /// </summary>
     /// <returns>Amount of time.</returns>
@@ -38,6 +58,43 @@ public static class AGDCWareFramework {
         return endTime - Time.realtimeSinceStartup;
     }
 
+    /// <summary>
+    /// Set the maximum number of lives. 
+    /// </summary>
+    /// <param name="num">maxLives is set to num. Default value is 4.</param>
+    public static void setMaxLives(int num = 4)
+    {
+        maxLives = num;
+        currentLives = maxLives;
+
+        livesInit = true;
+    }
+
+    public static int getCurrentLives()
+    {
+        return currentLives;
+    }
+
+    /// <summary>
+    /// Modify the current number of lives by an offset (e.g. 1 for adding a life, -1 for losing a life).
+    /// </summary>
+    /// <param name="offset"> Offset is added to current lives (Offset can be negative).</param>
+    /// <returns>Returns True when the player is dead (i.e. at 0 lives), False otherwise.</returns>
+    private static bool offsetLives(int offset)
+    {
+        currentLives += offset;
+
+        if(currentLives <= 0)
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
+    }
+    
     private static void init()
     {
         Assert.IsFalse(initialized);
@@ -53,6 +110,8 @@ public static class AGDCWareFramework {
 
         Assert.IsTrue(sceneNames.Count > 0);
 
+        setMaxLives();
+
         initialized = true;
     }
 
@@ -65,6 +124,22 @@ public static class AGDCWareFramework {
             init();
         SceneManager.LoadScene(sceneNames[Random.Range(0, sceneNames.Count)]);
         resetTimer();
+    }
+
+
+    public static void LoadNextGame(bool victory)
+    {
+        if(victory)
+        {
+            ++gamesWon;
+        }
+
+        else
+        {
+            offsetLives(-1);
+        }
+        
+        LoadNextGame();
     }
 
     private static void resetTimer()
