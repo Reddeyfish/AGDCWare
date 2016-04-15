@@ -12,8 +12,7 @@ We prefer to avoid pull requests, as they result in more merge conflicts than di
 Your game should be self-contained in a single scene. Each game and all of its assets and files should be self-contained in a single folder with the same name as your game.
 
 
-To end your game, call the static funtion `AGDCWareFramework.LoadNextGame();`, which will load the next game.
-For your game to be loaded, add your scene name to the file `SceneNames.txt`, which is above the Assets folder.
+To end your game, call the static funtion `AGDCWareFramework.LoadNextGame();`, which will load the next game. Additionally, make sure to add your scene to the project's build settings by going to File -> Build Settings -> Add Open Scene. This will allow your game to have a chance to be chosen in the random rotation.
 
 All of your code should be in your own namespace, to avoid conflicts.
 ```
@@ -38,6 +37,3 @@ There exist common library-style in the VGDC Assets folder. If you want to contr
 Documentation should include Assert statements and autodoc (`///`) comments in addition to normal documentation.
 
 You can use art/sound assets from other people's folders, but please create your own copy for your own use. The other person can update or delete the asset in their folder without notifying you.
-
-Status API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Contact Help

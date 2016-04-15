@@ -63,6 +63,7 @@ namespace buckslice {
                 }
             }
             triArray = tris.ToArray();
+
         }
 
         private GameObject GenerateSlice() {

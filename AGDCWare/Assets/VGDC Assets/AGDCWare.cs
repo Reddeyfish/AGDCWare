@@ -10,19 +10,12 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public static class AGDCWareFramework {
 
-    private const string SCENENAMESTXT = "SceneNames.txt";
-
     private const float timePerScene = 30f;
 
     /// <summary>
     /// True if the framework has been initialized, False otherwise.
     /// </summary>
     private static bool initialized = false;
-
-    /// <summary>
-    /// Collection of the sceneNames of all mini-games.
-    /// </summary>
-    private static List<string> sceneNames;
 
     /// <summary>
     /// Time when the current scene is supposed to end.
@@ -99,17 +92,6 @@ public static class AGDCWareFramework {
     {
         Assert.IsFalse(initialized);
 
-        //load sceneNames
-        sceneNames = new List<string>();
-        StreamReader inputStream = new StreamReader(SCENENAMESTXT);
-        while (!inputStream.EndOfStream)
-        {
-            sceneNames.Add(inputStream.ReadLine());
-        }
-        inputStream.Close();
-
-        Assert.IsTrue(sceneNames.Count > 0);
-
         setMaxLives();
 
         initialized = true;
@@ -129,9 +111,6 @@ public static class AGDCWareFramework {
         int randAdd = Random.Range(1, sceneCount);
         int nextSceneIndex = (sceneIndex + randAdd) % sceneCount;
         SceneManager.LoadScene(nextSceneIndex);
-
-        // cant load another scene if it isnt in build settings
-        //SceneManager.LoadScene(sceneNames[Random.Range(0, sceneNames.Count)]);
 
         resetTimer();
     }
