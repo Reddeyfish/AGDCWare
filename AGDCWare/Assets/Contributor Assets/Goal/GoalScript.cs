@@ -9,7 +9,7 @@
         {
             if (other.gameObject.CompareTag("Ball"))
             {
-                other.gameObject.GetComponent<BallScript>().SetGameOver();
+                GameState.state = GameState.States.Won;
             }
         }
     }

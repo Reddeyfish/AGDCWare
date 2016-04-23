@@ -8,10 +8,11 @@
         public GameObject ball;
         public float maxFollowSpeed;
 
-        // Update is called once per frame
+        // FixedUpdate is called once per physics update
         void FixedUpdate()
         {
-            if (this.transform.position.y != ball.transform.position.y && !ball.GetComponent<BallScript>().IsGameOver())
+            // Follow the ball's movement
+            if (GameState.state != GameState.States.Won && GameState.state != GameState.States.Lost)
             {
                 float scaledFollowSpeed = Mathf.Abs((ball.transform.position.y - this.transform.position.y) * maxFollowSpeed * 0.5f);
                 if (scaledFollowSpeed > maxFollowSpeed)
