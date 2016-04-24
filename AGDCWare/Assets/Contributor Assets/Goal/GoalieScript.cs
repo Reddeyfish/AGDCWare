@@ -14,7 +14,7 @@
             // Follow the ball's movement
             if (GameState.state != GameState.States.Won && GameState.state != GameState.States.Lost)
             {
-                float scaledFollowSpeed = Mathf.Abs((ball.transform.position.y - this.transform.position.y) * maxFollowSpeed * 0.5f);
+                float scaledFollowSpeed = Mathf.Abs((ball.transform.position.y - this.transform.position.y) * maxFollowSpeed * 0.6f);
                 if (scaledFollowSpeed > maxFollowSpeed)
                     scaledFollowSpeed = maxFollowSpeed;
                 this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(this.transform.position.x, ball.transform.position.y, this.transform.position.z), scaledFollowSpeed * Time.fixedDeltaTime);

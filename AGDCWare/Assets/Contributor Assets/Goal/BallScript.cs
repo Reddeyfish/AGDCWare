@@ -29,10 +29,10 @@
                 Vector3 vel = GetComponent<Rigidbody2D>().velocity;
                 GetComponent<Rigidbody2D>().velocity = new Vector3(vel.x, -vel.y, vel.z);
 
-                if (GameState.state == GameState.States.Won)
+                if (GameState.state == GameState.States.Won || GameState.state == GameState.States.Lost)
                     GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             }
-            else if (collision.gameObject.CompareTag("Lose"))
+            else if (collision.gameObject.CompareTag("Lose") && GameState.state != GameState.States.Won)
             {
                 GetComponent<Rigidbody2D>().velocity = Vector3.zero;
                 GameState.state = GameState.States.Lost;

@@ -7,7 +7,7 @@
     {
         void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag("Ball"))
+            if (other.gameObject.CompareTag("Ball") && GameState.state != GameState.States.Lost)
             {
                 GameState.state = GameState.States.Won;
             }
