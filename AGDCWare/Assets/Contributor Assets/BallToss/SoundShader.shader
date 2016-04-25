@@ -82,6 +82,8 @@ Shader "Custom/DerekEdrich/Sound"
                 c.b = finalColor.b;
                 c.a = finalColor.a;
 					
+				c *= frac(5 * wpos.y);
+
                 return c;
             }
  
