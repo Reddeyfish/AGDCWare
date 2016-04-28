@@ -6,6 +6,7 @@ namespace AndresGonzalez
     public class TurtleSpawner : MonoBehaviour
     {
         public GameObject turtlepfab;
+        public float TurtlesPerSecond;
         private Bounds debox;
 
         void Start()
