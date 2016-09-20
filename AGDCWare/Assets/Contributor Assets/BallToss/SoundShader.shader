@@ -1,4 +1,6 @@
-﻿//Highlights intersections with other objects
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+//Highlights intersections with other objects
  
 Shader "Custom/DerekEdrich/Sound"
 {
@@ -50,7 +52,7 @@ Shader "Custom/DerekEdrich/Sound"
                 v2f o;
                 o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
                 o.projPos = toScreen(o.pos.xy / o.pos.w);
-				o.center = mul(_Object2World, float4(0,0,0,1));
+				o.center = mul(unity_ObjectToWorld, float4(0,0,0,1));
                 return o;
             }
  
